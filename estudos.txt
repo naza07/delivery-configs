@@ -1,0 +1,49 @@
+https://auth0.com/blog/an-introduction-to-microservices-part-3-the-service-registry/
+https://cloud.spring.io/spring-cloud-config/
+https://github.com/Netflix/zuul
+https://martinfowler.com/bliki/CircuitBreaker.html
+
+Servidor de Configuração, que tem o objetivo de centralizar toda a configuração da nossa rede de Microservices em um só lugar.
+
+Todos os arquivos de configuração do nosso sistema estarão em um repositório git e o Servidor de Configuração será o responsável por ler as informações no repositório e fornece-las às aplicações através de requests HTTP.
+
+spring-boot-actuator: Se trata de um sub projeto do Spring Boot. Ele adiciona vários serviços de qualidade de produção à sua aplicação com pouco esforço de sua parte como o famoso /health por exemplo.
+spring-boot-starter-web: Essa dependência é uma das mais importantes. Usando-a você já tem um projeto totalmente configurado para trabalhar com qualquer serviço web, como fornecer recursos REST e um tomcat embedded por padrão para subir o projeto.
+spring-cloud-config-server: Aqui está a dependência mágica que irá transformar nosso MicroService em um Servidor de Configuração sem muito esforço adicional, apenas algumas configurações no application.yml.
+spring-boot-starter-test: Por último, e não menos importante, a dependência de testes do Spring. Ela torna nosso projeto apto para a implementação de testes unitários, de API, integração, carga entre diversos outros.
+
+application.yml: Aqui são declaradas as configurações que você gostaria de substituir no starter do Spring boot e serão usadas no seu projeto.
+bootstrap.yml: Esse arquivo é usado para realizar algumas configurações de inicialização do nosso parent, como o nome da aplicação no ecosistema do Spring Cloud e a conexão com um Servidor de Configuração.
+
+Esse repositório pode ser remoto ou local, eu estou utilizando um repositório remoto e público. Para configurar um repositório local, ou obter mais informações sobre como usar um repositório privado consulte a documentação do Spring Cloud Config.
+
+http://localhost:9090/delivery-sample-config/default
+
+O Eureka é um serviço REST (Representational State Transfer) que é usado principalmente na nuvem AWS (Amazon Web Services) para localizar serviços com o objetivo de balanceamento de carga e failover de servidores.
+
+O conjunto de ferramentas Spring Cloud possui uma implementação do Eureka para que possamos subir um Eureka Server utilizando uma aplicação Spring Boot.
+
+spring-cloud-starter-config: Como estamos utilizando um Config Server para centralizar nossa aplicação, o Spring fornece esta biblioteca para que a conexão com esse servidor seja simples, somente configurando no arquivo bootstrap.yml qual o host do Config Server.
+spring-cloud-starter-eureka-server: Essa dependência é a mais importante. Ela torna possível transformar a aplicação Spring Boot em um Servidor Eureka somente com algumas configurações nos properties e uma anotação na classe principal.
+
+Quando a aplicação delivery-eureka-server estiver iniciando ela consultará a aplicação delivery-config-server, perguntando a ela se existe em seu repositório um arquivo com o nome configurado em spring.application.name e com a extensão properties ou yml.
+
+Resource Owner é o proprietário do recurso, ou seja, o usuário que irá entrar com as credenciais de acesso.
+Client é a aplicação que irá acessar o servidor de recursos. Ela pode ser uma aplicação mobile, desktop, etc.
+Authorization server é o servidor autenticação e autorização. É o que nós vamos implementa-lo nessa story.
+Resource server são os recursos protegidos.
+
+
+spring-cloud-starter-oauth2: Essa é a principal dependência desse projeto. Ela oferece toda a implementação necessária para a aplicação funcionar como servidor de autorização Oauth2.
+spring-boot-starter-data-jpa: Como o próprio nome diz, usaremos essa dependência para trabalhar com nossa camada de persistência. Ela ja fornece tudo que precisamos como por exemplo: spring-data-jpa, spring-orm e o hibernate.
+mysql-connector-java: Aqui temos o driver JDBC do MySql(Banco de Dados que vamos utilizar).
+
+Configurações de segurança:
+
+security.oauth2.client.access-token-validity-seconds: Tempo, em segundos, de duração do token de acesso.
+security.oauth2.client.authorized-grant-types: Qual o tipo do pedido de concessão de acesso. Se o Client vai solicitar um token utilizando usuário e senha ou se vai renovar um token já existente.
+security.oauth2.client.client-id: Identificador único que será usado pelo Client para solicitar concessão de acesso.
+security.oauth2.client.client-secret: Uma senha usada em conjunto com o client-id como autenticação básica do client que está tentando obter um token de acesso.
+security.oauth2.client.resource-ids: Identificador dos recursos disponíveis, se especificado aqui também deve ser especificado no servidor de recursos.
+security.oauth2.client.scope: Os escopos que o Client terá acesso.
+
