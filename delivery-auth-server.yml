@@ -19,7 +19,7 @@ security:
         client:
             access-token-validity-seconds: 1800
             authorized-grant-types: password,refresh_token
-            client-id: coderef
+            client-id: warningthrow
             client-secret: $2a$10$p9Pk0fQNAQSesI4vuvKA0OZanDD2
             resource-ids: resources
             scope: read,write
@@ -28,11 +28,11 @@ spring:
     datasource:
         data: classpath:/sql/data.sql
         driver-class-name: com.mysql.jdbc.Driver
-        password: '1234'
+        password: 'Au4&%gD#@F'
         platform: mysql
         schema: classpath:/sql/schema.sql
         url: jdbc:mysql://localhost/oauth?verifyServerCertificate=false&useSSL=false&requireSSL=false
-        username: root
+        username: nazario&nazario
     jpa:
         database-platform: org.hibernate.dialect.MySQLDialect
         generate-ddl: false
