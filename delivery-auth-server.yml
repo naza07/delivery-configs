@@ -1,4 +1,3 @@
-
 server:
   port: 9092
 
@@ -19,7 +18,7 @@ security:
         client:
             access-token-validity-seconds: 1800
             authorized-grant-types: password,refresh_token
-            client-id: warningthrow
+            client-id: coderef
             client-secret: $2a$10$p9Pk0fQNAQSesI4vuvKA0OZanDD2
             resource-ids: resources
             scope: read,write
@@ -28,15 +27,14 @@ spring:
     datasource:
         data: classpath:/sql/data.sql
         driver-class-name: com.mysql.jdbc.Driver
-        password: 'Au4&%gD#@F'
+        password: '030737mL'
         platform: mysql
         schema: classpath:/sql/schema.sql
         url: jdbc:mysql://localhost/world?verifyServerCertificate=false&useSSL=false&requireSSL=false
-        username: nazario&nazario
+        username: root
     jpa:
         database-platform: org.hibernate.dialect.MySQLDialect
         generate-ddl: false
         hibernate:
             ddl-auto: none
         show-sql: true
-view rawdelivery-auth-server.yml hosted with ❤ by GitHub
