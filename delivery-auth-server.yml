@@ -31,7 +31,7 @@ spring:
         password: 'Au4&%gD#@F'
         platform: mysql
         schema: classpath:/sql/schema.sql
-        url: jdbc:mysql://localhost/oauth?verifyServerCertificate=false&useSSL=false&requireSSL=false
+        url: jdbc:mysql://localhost/world?verifyServerCertificate=false&useSSL=false&requireSSL=false
         username: nazario&nazario
     jpa:
         database-platform: org.hibernate.dialect.MySQLDialect
